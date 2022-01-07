@@ -32,6 +32,11 @@ public class TodoService {
 		return repository.findByUserId(entity.getId());
 	}
 
+	
+	public List<TodoEntity> retrieve(final String userId) {
+		return repository.findByUserId(userId);
+	}	
+	
 	private void validate(TodoEntity entity) {
 
 		//null check

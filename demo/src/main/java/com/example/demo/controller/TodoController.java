@@ -35,7 +35,7 @@ public class TodoController {
 		return ResponseEntity.ok().body(response);
 	}
 	
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<?> createTodo(@RequestBody TodoDTO dto) {
 		
 		try {
@@ -47,7 +47,7 @@ public class TodoController {
 			entity.setUserId(tempararyUserId);
 			
 			List<TodoEntity> entities = service.create(entity);
-			
+			//entitis List ->> dto List
 			List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
 			
 			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder()
@@ -66,6 +66,21 @@ public class TodoController {
 			return ResponseEntity.badRequest().body(response);
 		}
 		 
+	}
+	
+	@GetMapping
+	public ResponseEntity<?> retrieveTodoList() {
+		
+		String tempararyUserId = "temporary-user";
+		List<TodoEntity> entities = service.retrieve(tempararyUserId);
+		//entitis List ->> dto List
+		List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
+		
+		ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder()
+										.data(dtos)
+										.build();
+		
+		return ResponseEntity.ok().body(response);	
 	}
 
 }

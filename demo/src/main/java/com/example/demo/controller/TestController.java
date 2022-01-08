@@ -16,10 +16,10 @@ import com.example.demo.dto.TestRequestBodyDTO;
 @RequestMapping("test")
 public class TestController {
 	
-	@GetMapping("/{id}")
-	public String TestController(@PathVariable(required = false) String id) {
-		return "Test Done!!" + id;
-	}
+	//@GetMapping("/{id}")
+	//public String TestController(@PathVariable(required = false) String id) {
+	//	return "Test Done!!" + id;
+	//}
 	
 	@GetMapping("/testRequestBody")
 	public String testControllerRequestBody(@RequestBody TestRequestBodyDTO testRequestBodyDto) {
